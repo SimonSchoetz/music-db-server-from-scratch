@@ -1,7 +1,9 @@
 const Route = require("express").Router();
-const { getContact, postContact, putContact, deleteContact } = require("../controllers/contactsController");
+const { getContacts, postContacts, putContacts, deleteContacts } = require("../controllers/contactsController");
 
-Route.get("/", getContact);
-Route.get("/", postContact);
-Route.get("/", putContact);
-Route.get("/", deleteContact);
+Route.get("/", getContacts);
+// Route.post("/", postContacts);
+// Route.put("/", putContacts);
+// Route.delete("/", deleteContacts);
+
+module.exports = Route;
