@@ -2,15 +2,15 @@ const express = require("express");
 const app = express();
 const createError = require("http-errors");
 
-const indexRoute = require();
-const contactsRoute = require();
+const indexRoute = require("./routes/indexRoute");
+// const contactsRoute = require();
 
 const port = process.env.PORT || 3000;
 
 app.use(express.json()) //translate json into readable data
 
 app.use("/", indexRoute);
-app.use("/contacts", contactsRoute);
+// app.use("/contacts", contactsRoute);
 
 
 //Error Handler
