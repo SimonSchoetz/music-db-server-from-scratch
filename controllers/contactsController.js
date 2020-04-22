@@ -1,3 +1,5 @@
+const db = require("../models/db");
+
 exports.getContactById = (req, res, next) => {
     res.send("getContactById request am been")
 };
