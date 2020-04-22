@@ -1,12 +1,12 @@
 const Route = require("express").Router();
-const { getOrderById, getOrder, postOrder, putOrder, deleteOrder } = require("../controllers/ordersController");
+const { getOrderById, getOrders, postOrders, putOrders, deleteOrders } = require("../controllers/ordersController");
 
-Route.get("/", getOrder);
-Route.post("/", postOrder);
+Route.get("/", getOrders);
+Route.post("/", postOrders);
 //Alternative syntax for practice purposes
 Route.route("/:id")
     .get(getOrderById)
-    .put(putOrder)
-    .delete(deleteOrder);
+    .put(putOrders)
+    .delete(deleteOrders);
 
 module.exports = Route;

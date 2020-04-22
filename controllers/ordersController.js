@@ -5,7 +5,7 @@ exports.getOrders = (req, res, next) => {
     res.json({ success: true, order: order });
 };
 
-exports.getOrdersById = (req, res, next) => {
+exports.getOrderById = (req, res, next) => {
     const { id } = req.params;
     let order = db.get("orders").find({ id })
     res.json({ success: true, order: order })
