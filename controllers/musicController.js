@@ -1,19 +1,27 @@
 const db = require("../models/db");
 
-exports.getMusicById = (req, res, next) => {
-    res.send("getMusicById request am been")
+exports.getMusic = (req, res, next) => {
+    let music = db.get("music").value()
+    res.json({ success: true, music: music });
 };
 
-exports.getMusic = (req, res, next) => {
-    res.send("getMusic request am been")
+exports.getMusicById = (req, res, next) => {
+    const { id } = req.params;
+    let music = db.get("music").find({ id })
+    res.json({ success: true, music: music })
 };
 
 exports.postMusic = (req, res, next) => {
-    res.send("postMusic request am been")
+    db.get("music").push(req.body).last().assign({ id: new Date().toString() }).write();
 };
 exports.putMusic = (req, res, next) => {
-    res.send("putMusic request am been")
+    const { id } = req.params;
+    const music = req.body;
+    db.get("music").find({ id }).assign(music).write();
+    res.json({ success: true, music: music });
 };
 exports.deleteMusic = (req, res, next) => {
-    res.send("deleteMusic request am been")
+    const { id } = req.params;
+    let music = db.get("music").remove({ id }).write();
+    res.json({ success: true, music: music })
 };
