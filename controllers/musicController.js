@@ -13,6 +13,7 @@ exports.getMusicById = (req, res, next) => {
 
 exports.postMusic = (req, res, next) => {
     db.get("music").push(req.body).last().assign({ id: new Date().toString() }).write();
+    res.json({ success: true, music: req.body })
 };
 exports.putMusic = (req, res, next) => {
     const { id } = req.params;
