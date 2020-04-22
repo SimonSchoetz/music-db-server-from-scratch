@@ -1,3 +1,7 @@
+exports.getContactById = (req, res, next) => {
+    res.send("getContactById request am been")
+};
+
 exports.getContacts = (req, res, next) => {
     res.send("getContacts request am been")
 };
