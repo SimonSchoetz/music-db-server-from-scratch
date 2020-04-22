@@ -4,6 +4,8 @@ const createError = require("http-errors");
 
 const indexRoute = require("./routes/indexRoute");
 const musicRoute = require("./routes/musicRoute");
+const ordersRoute = require("./routes/ordersRoute");
+const usersRoute = require("./routes/usersRoute");
 
 const port = process.env.PORT || 3000;
 
@@ -11,6 +13,8 @@ app.use(express.json()) //translate json into readable data
 
 app.use("/", indexRoute);
 app.use("/music", musicRoute);
+app.use("/orders", ordersRoute);
+app.use("/users", usersRoute);
 
 
 //Error Handler
