@@ -13,6 +13,7 @@ exports.getUserById = (req, res, next) => {
 
 exports.postUser = (req, res, next) => {
     db.get("users").push(req.body).last().assign({ id: new Date().toString() }).write();
+    res.json({ success: true, user: req.body });
 };
 exports.putUser = (req, res, next) => {
     const { id } = req.params;

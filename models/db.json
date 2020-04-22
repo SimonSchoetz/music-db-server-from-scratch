@@ -27,5 +27,11 @@
     }
   ],
   "orders": [],
-  "users": []
+  "users": [
+    {
+      "name": "Simon Schötz",
+      "alias": "Busted Fingerz",
+      "id": "Wed Apr 22 2020 15:26:24 GMT+0200 (Central European Summer Time)"
+    }
+  ]
 }

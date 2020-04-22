@@ -13,6 +13,7 @@ exports.getOrderById = (req, res, next) => {
 
 exports.postOrders = (req, res, next) => {
     db.get("orders").push(req.body).last().assign({ id: new Date().toString() }).write();
+    res.json({ success: true, order: req.body });
 };
 exports.putOrders = (req, res, next) => {
     const { id } = req.params;
