@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const createError = require("http-errors");
+const mongoose = require("mongoose");
 
 const indexRoute = require("./routes/indexRoute");
 const musicRoute = require("./routes/musicRoute");
@@ -8,6 +9,11 @@ const ordersRoute = require("./routes/ordersRoute");
 const usersRoute = require("./routes/usersRoute");
 
 const port = process.env.PORT || 3000;
+
+
+mongoose.connect("mongodb://127.0.0.1:27017/record-shop", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.on("error", (err) => console.log(err));
+mongoose.connection.on("open", () => console.log("db connected"));
 
 app.use(express.json()) //translate json into readable data
 
