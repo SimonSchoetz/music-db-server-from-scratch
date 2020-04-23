@@ -11,9 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "http-errors": "^1.7.3"
+    "http-errors": "^1.7.3",
+    "mongoose": "^5.9.10"
   },
   "devDependencies": {
+    "faker": "^4.1.0",
     "nodemon": "^2.0.3"
   }
 }
