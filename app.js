@@ -11,7 +11,7 @@ const usersRoute = require("./routes/usersRoute");
 const port = process.env.PORT || 3000;
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/record-shop", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://127.0.0.1:27017/music-collection", { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on("error", (err) => console.log(err));
 mongoose.connection.on("open", () => console.log("db connected"));
 

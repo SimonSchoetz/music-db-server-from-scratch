@@ -1,14 +1,27 @@
+const createError = require("http-errors");
 const db = require("../models/db");
+const User = require("../models/userSchema");
 
 exports.getUser = (req, res, next) => {
-    let user = db.get("users").value()
-    res.json({ success: true, user: user });
+    try {
+        const users = await User.find()
+        res.json({ success: true, users: users });
+    }
+    catch (err) {
+        next(err)
+    }
 };
 
 exports.getUserById = (req, res, next) => {
     const { id } = req.params;
-    let user = db.get("users").find({ id })
-    res.json({ success: true, user: user })
+    try {
+        const users = await User.findById(id);
+        if (!user) throw createError(404);
+        res.json({ success: true, users: users });
+    }
+    catch (err) {
+        next(err)
+    }
 };
 
 exports.postUser = (req, res, next) => {
