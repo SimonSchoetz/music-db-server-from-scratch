@@ -40,7 +40,7 @@ exports.putUser = async (req, res, next) => {
     const { id } = req.params;
     const user = req.body;
     try {
-        const updateUser = await User.findByIdAndUpdate(id, user, { new: true }); // true, to show the new user in the update message
+        const updateUser = await User.findByIdAndUpdate(id, user, { new: true });
         if (!updateUser) throw createError(500);
         res.json({ success: true, user: updateUser });
     }

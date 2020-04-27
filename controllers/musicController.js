@@ -38,7 +38,7 @@ exports.putMusic = async (req, res, next) => {
     const { id } = req.params;
     const music = req.body;
     try {
-        const updateMusic = await Music.findByIdAndUpdate(id, music, { new: true }); // true, to show the new music in the update message
+        const updateMusic = await Music.findByIdAndUpdate(id, music, { new: true });
         if (!updateMusic) throw createError(500);
         res.json({ success: true, music: updateMusic });
     }

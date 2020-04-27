@@ -37,7 +37,7 @@ exports.putOrders = async (req, res, next) => {
     const { id } = req.params;
     const music = req.body;
     try {
-        const updateOrder = await Order.findByIdAndUpdate(id, music, { new: true }); // true, to show the new music in the update message
+        const updateOrder = await Order.findByIdAndUpdate(id, music, { new: true });
         if (!updateOrder) throw createError(500);
         res.json({ success: true, music: updateOrder });
     }
