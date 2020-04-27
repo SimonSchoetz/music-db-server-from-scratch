@@ -1,7 +1,7 @@
 const createError = require("http-errors");
 const Music = require("../models/musicSchema");
 
-exports.getMusic = (req, res, next) => {
+exports.getMusic = async (req, res, next) => {
     try {
         const music = await Music.find()
         res.json({ success: true, music: music });
@@ -11,7 +11,7 @@ exports.getMusic = (req, res, next) => {
     }
 };
 
-exports.getMusicById = (req, res, next) => {
+exports.getMusicById = async (req, res, next) => {
     const { id } = req.params;
     try {
         const music = await Music.findById(id);
@@ -23,7 +23,7 @@ exports.getMusicById = (req, res, next) => {
     }
 };
 
-exports.postMusic = (req, res, next) => {
+exports.postMusic = async (req, res, next) => {
     try {
         const music = new Music.findByIdAndUpdate
         await music.save()
@@ -49,7 +49,7 @@ exports.putMusic = async (req, res, next) => {
     res.json({ success: true, music: music });
 };
 
-exports.deleteMusic = (req, res, next) => {
+exports.deleteMusic = async (req, res, next) => {
     const { id } = req.params;
     try {
         const music = await Music.findByIdAndDelete(id);
