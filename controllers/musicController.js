@@ -25,9 +25,8 @@ exports.getMusicById = async (req, res, next) => {
 
 exports.postMusic = async (req, res, next) => {
     try {
-        const music = new Music.findByIdAndUpdate
+        const music = new Music(req.body);
         await music.save()
-        console.log("New music has been added")
         res.json({ success: true, music: music });
     }
     catch (err) {
@@ -46,7 +45,6 @@ exports.putMusic = async (req, res, next) => {
     catch (err) {
         next(err)
     }
-    res.json({ success: true, music: music });
 };
 
 exports.deleteMusic = async (req, res, next) => {

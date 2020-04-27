@@ -26,9 +26,8 @@ exports.getUserById = async (req, res, next) => {
 exports.postUser = async (req, res, next) => {
 
     try {
-        const user = new User.findByIdAndUpdate
+        const user = new User(req.body);
         await user.save()
-        console.log("New user has been added")
         res.json({ success: true, user: user });
     }
     catch (err) {
@@ -48,7 +47,6 @@ exports.putUser = async (req, res, next) => {
     catch (err) {
         next(err)
     }
-    res.json({ success: true, user: user });
 };
 
 exports.deleteUser = async (req, res, next) => {
