@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const createError = require("http-errors");
 const mongoose = require("mongoose");
-const { setCors } = require("./middleware/security")
+const { setCors } = require("./middleware/security");
 
 const indexRoute = require("./routes/indexRoute");
 const musicRoute = require("./routes/musicRoute");
