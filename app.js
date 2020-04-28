@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const createError = require("http-errors");
 const mongoose = require("mongoose");
+const { setCors } = require("./middleware/security")
 
 const indexRoute = require("./routes/indexRoute");
 const musicRoute = require("./routes/musicRoute");
@@ -19,7 +20,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/music-collection", {
 mongoose.connection.on("error", (err) => console.log(err));
 mongoose.connection.on("open", () => console.log("db connected"));
 
-app.use(express.json()) //translate json into readable data
+app.use(express.json());
+app.use(setCors);
 
 app.use("/", indexRoute);
 app.use("/music", musicRoute);
