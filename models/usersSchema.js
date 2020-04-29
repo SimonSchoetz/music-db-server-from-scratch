@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const AddressSchema = require("./addressSchema");
 
 const UserSchema = new Schema(
     {
