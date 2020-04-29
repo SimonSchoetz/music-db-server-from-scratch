@@ -3,8 +3,8 @@ const Order = require("../models/ordersSchema");
 
 exports.getOrders = async (req, res, next) => {
     try {
-        const music = await Order.find().populate("music", "-__v -id");
-        res.json({ success: true, music: music });
+        const music = await Order.find().populate("item", "-__v -id");
+        res.json({ success: true, orders: music });
     }
     catch (err) {
         next(err)
@@ -14,9 +14,9 @@ exports.getOrders = async (req, res, next) => {
 exports.getOrderById = async (req, res, next) => {
     const { id } = req.params;
     try {
-        const music = await Order.findById(id).populate("music", "-__v -id");
+        const music = await Order.findById(id).populate("item", "-__v -id");
         if (!music) throw createError(404);
-        res.json({ success: true, music: music });
+        res.json({ success: true, order: music });
     }
     catch (err) {
         next(err)
