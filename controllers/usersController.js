@@ -35,6 +35,17 @@ exports.postUser = async (req, res, next) => {
     }
 
 };
+exports.login = async (req, res, next) => {
+    const { email, pw } = req.body
+
+    try {
+        const user = await User.findOne({ email, pw })
+        if (!user) throw createError(404);
+        res.json({ success: true, message: `Hello,  ${user.firstName} :)` });
+    } catch (err) {
+        next(err)
+    }
+}
 
 exports.putUser = async (req, res, next) => {
     const { id } = req.params;
