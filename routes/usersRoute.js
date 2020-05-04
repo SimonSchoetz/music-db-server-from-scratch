@@ -1,14 +1,16 @@
 const Route = require("express").Router();
 const { getUserById, getUser, postUser, putUser, deleteUser, login } = require("../controllers/usersController");
 const { validUserInputs } = require("../middleware/usersValidator");
+const auth = require("../middleware/tokenAuthenticator");
+const isAdmin = require("../middleware/rolesAuthenticator");
 
-Route.get("/", getUser);
+Route.get("/", auth, isAdmin, getUser);
 Route.post("/", validUserInputs(), postUser);
-Route.post("/login", login)
+Route.post("/login", auth, login)
 //Alternative syntax for practice purposes
 Route.route("/:id")
-    .get(getUserById)
-    .put(putUser)
-    .delete(deleteUser);
+    .get(auth, getUserById)
+    .put(auth, putUser)
+    .delete(auth, deleteUser);
 
 module.exports = Route;
