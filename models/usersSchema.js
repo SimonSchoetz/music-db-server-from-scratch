@@ -9,6 +9,15 @@ const UserSchema = new Schema(
         userName: { type: String, required: true },
         email: { type: String, required: true, dropDups: true },
         pw: { type: String, required: true },
+        role: {
+            type: String,
+            enum: ["Admin", "User"],
+            default: "User",
+            required: true
+        },
+        tokens: [{
+            token: { type: String, required: true }
+        }],
         address: AddressSchema
     }
 );
