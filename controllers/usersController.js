@@ -24,29 +24,33 @@ exports.getUserById = async (req, res, next) => {
 };
 
 exports.postUser = async (req, res, next) => {
-
     try {
         const user = new User(req.body);
-        await user.save()
-        res.json({ success: true, user: user });
+        const token = user.generateAuthToken();
+        await user.save();
+        const publicData = user.getPublicFields();
+        res.header("x-auth", token).json({ success: true, user: publicData });
     }
     catch (err) {
         next(err)
     }
-
 };
 exports.login = async (req, res, next) => {
     const { email, pw } = req.body
-
     try {
-        const user = await User.findOne({ email, pw })
+
+        const user = await User.findOne({ email })
+        const isValid = await user.checkPW(pw);
+        if (!isValid) throw createError(403);
+        const token = user.generateAuthToken();
+        const publicData = user.getPublicFields();
+
         if (!user) throw createError(404);
-        res.json({ success: true, message: `Hello,  ${user.firstName} :)` });
+        res.header("x-auth", token).json({ success: true, user: publicData });
     } catch (err) {
         next(err)
     }
-}
-
+};
 exports.putUser = async (req, res, next) => {
     const { id } = req.params;
     const user = req.body;
