@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+const { encrypt, compare } = require("../lib/encrypt");
 const { Schema } = mongoose;
 const AddressSchema = require("./addressSchema");
 
@@ -43,6 +45,7 @@ UserSchema.methods.getPublicFields = function () {
 
 // compare pwInput with saved user.pw
 UserSchema.methods.checkPW = async function (pwInput) {
+    console.log("Test in checkPW")
     const user = this;
     return await compare(pwInput, user.pw)
 }
@@ -51,7 +54,7 @@ UserSchema.methods.checkPW = async function (pwInput) {
 UserSchema.pre("save", async function (next) {
     // if (!this.isModified("pw")) return next() //for the future when we implement function to change the pw
     this.pw = await encrypt(this.pw);
-    next(); //next means in this case complete the process of storing the data
+    next();
 })
 
 //Find user by token

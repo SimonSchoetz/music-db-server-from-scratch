@@ -38,7 +38,6 @@ exports.postUser = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     const { email, pw } = req.body
     try {
-
         const user = await User.findOne({ email })
         const isValid = await user.checkPW(pw);
         if (!isValid) throw createError(403);
