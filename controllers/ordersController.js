@@ -1,28 +1,58 @@
-const db = require("../models/db");
+const createError = require("http-errors");
+const Order = require("../models/ordersSchema");
 
-exports.getOrders = (req, res, next) => {
-    let order = db.get("orders").value()
-    res.json({ success: true, order: order });
+exports.getOrders = async (req, res, next) => {
+    try {
+        const music = await Order.find().populate("item", "-__v -id");
+        res.json({ success: true, orders: music });
+    }
+    catch (err) {
+        next(err)
+    }
 };
 
-exports.getOrderById = (req, res, next) => {
+exports.getOrderById = async (req, res, next) => {
     const { id } = req.params;
-    let order = db.get("orders").find({ id })
-    res.json({ success: true, order: order })
+    try {
+        const music = await Order.findById(id).populate("item", "-__v -id");
+        if (!music) throw createError(404);
+        res.json({ success: true, order: music });
+    }
+    catch (err) {
+        next(err)
+    }
 };
 
-exports.postOrders = (req, res, next) => {
-    db.get("orders").push(req.body).last().assign({ id: new Date().toString() }).write();
-    res.json({ success: true, order: req.body });
+exports.postOrders = async (req, res, next) => {
+    try {
+        const order = new Order(req.body);
+        await order.save()
+        res.json({ success: true, order: order });
+    }
+    catch (err) {
+        next(err)
+    }
 };
-exports.putOrders = (req, res, next) => {
+exports.putOrders = async (req, res, next) => {
     const { id } = req.params;
-    const order = req.body;
-    db.get("orders").find({ id }).assign(order).write();
-    res.json({ success: true, order: order });
+    const music = req.body;
+    try {
+        const updateOrder = await Order.findByIdAndUpdate(id, music, { new: true });
+        if (!updateOrder) throw createError(500);
+        res.json({ success: true, music: updateOrder });
+    }
+    catch (err) {
+        next(err)
+    }
 };
-exports.deleteOrders = (req, res, next) => {
+exports.deleteOrders = async (req, res, next) => {
     const { id } = req.params;
-    let order = db.get("orders").remove({ id }).write();
-    res.json({ success: true, order: order })
+    try {
+        const music = await Order.findByIdAndDelete(id);
+        if (!music) throw createError(404)
+        res.json({ success: true, music: music })
+    }
+    catch (err) {
+        next(err)
+    }
 };

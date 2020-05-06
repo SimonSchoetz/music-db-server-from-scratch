@@ -1,28 +1,60 @@
-const db = require("../models/db");
+const createError = require("http-errors");
+const Music = require("../models/musicSchema");
 
-exports.getMusic = (req, res, next) => {
-    let music = db.get("music").value();
-    res.json({ success: true, music: music });
+exports.getMusic = async (req, res, next) => {
+    try {
+        const music = await Music.find()
+        res.json({ success: true, music: music });
+    }
+    catch (err) {
+        next(err)
+    }
 };
 
-exports.getMusicById = (req, res, next) => {
+exports.getMusicById = async (req, res, next) => {
     const { id } = req.params;
-    let music = db.get("music").find({ id });
-    res.json({ success: true, music: music });
+    try {
+        const music = await Music.findById(id);
+        if (!music) throw createError(404);
+        res.json({ success: true, music: music });
+    }
+    catch (err) {
+        next(err)
+    }
 };
 
-exports.postMusic = (req, res, next) => {
-    db.get("music").push(req.body).last().assign({ id: new Date().toString() }).write();
-    res.json({ success: true, music: req.body });
+exports.postMusic = async (req, res, next) => {
+    try {
+        const music = new Music(req.body);
+        await music.save()
+        res.json({ success: true, music: music });
+    }
+    catch (err) {
+        next(err)
+    }
 };
-exports.putMusic = (req, res, next) => {
+
+exports.putMusic = async (req, res, next) => {
     const { id } = req.params;
     const music = req.body;
-    db.get("music").find({ id }).assign(music).write();
-    res.json({ success: true, music: music });
+    try {
+        const updateMusic = await Music.findByIdAndUpdate(id, music, { new: true });
+        if (!updateMusic) throw createError(500);
+        res.json({ success: true, music: updateMusic });
+    }
+    catch (err) {
+        next(err)
+    }
 };
-exports.deleteMusic = (req, res, next) => {
+
+exports.deleteMusic = async (req, res, next) => {
     const { id } = req.params;
-    let music = db.get("music").remove({ id }).write();
-    res.json({ success: true, music: music });
+    try {
+        const music = await Music.findByIdAndDelete(id);
+        if (!music) throw createError(404)
+        res.json({ success: true, music: music })
+    }
+    catch (err) {
+        next(err)
+    }
 };
