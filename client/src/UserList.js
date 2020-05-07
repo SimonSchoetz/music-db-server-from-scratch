@@ -13,7 +13,6 @@ export default function UserList(props) {
 
     const renderLi = (userData) => {
         if (userData.status === 403) return (<h2>Sign Up || Log In</h2>)
-        console.log(userData)
         if (!userData.users) return null; //Because first time the code is running, userData will be an empty array
 
 
@@ -37,7 +36,6 @@ export default function UserList(props) {
     };
     return (
         <div>
-            <h2>List Of Users</h2>
             <ul>
                 {renderLi(userData)}
             </ul>

@@ -4,7 +4,7 @@ const { validUserInputs } = require("../middleware/usersValidator");
 const auth = require("../middleware/tokenAuthenticator");
 const isAdmin = require("../middleware/rolesAuthenticator");
 
-Route.get("/", auth, getUser);
+Route.get("/", auth, isAdmin, getUser);
 Route.post("/", validUserInputs(), postUser);
 Route.post("/login", auth, login)
 //Alternative syntax for practice purposes

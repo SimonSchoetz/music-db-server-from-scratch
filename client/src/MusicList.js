@@ -12,7 +12,7 @@ export default function MusicList() {
 
 
     const renderLi = (musicData) => {
-
+        if (musicData.status === 404) return (<h2>Error 404, something went wrong</h2>)
         if (!musicData.music) return null; //Because first time the code is running, musicData will be an empty array
         // console.log(musicData.music[0].release.getDay())
         return musicData.music.map((el, i) => (
