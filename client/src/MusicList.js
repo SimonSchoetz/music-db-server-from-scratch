@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import InputFormMusic from './InputFormMusic';
+import { Link } from 'react-router-dom';
 
 export default function MusicList() {
 
@@ -34,12 +34,14 @@ export default function MusicList() {
     };
 
     return (
+
         <div>
-            <InputFormMusic />
             <h2>List Of Music</h2>
+            <Link to="/music/post">Add New Track</Link>
             <ul>
                 {renderLi(musicData)}
             </ul>
         </div>
+
     )
 };
