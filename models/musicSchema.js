@@ -5,11 +5,11 @@ const MusicSchema = new Schema(
     {
         title: { type: String, required: true },
         artist: { type: String, required: true },
-        album: { type: String },
+        album: { type: String, default: "N/A" },
         label: { type: String, default: "Self-Release", required: true },
         release: { type: Date, default: Date.now, required: true },
         link: { type: String, required: true },
-        img: { type: String }
+        img: { type: String, default: "N/A" }
     }
 );
 

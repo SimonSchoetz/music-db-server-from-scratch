@@ -13,6 +13,7 @@ export default function InputFormMusic() {
         event.preventDefault()
 
 
+
         //reset form
         setTitle("");
         setArtist("Busted Fingerz");
@@ -22,6 +23,8 @@ export default function InputFormMusic() {
         setLink("");
         setImg("");
     }
+
+
 
     const handleFormInput = event => {
         const id = event.target.id;
@@ -84,7 +87,9 @@ export default function InputFormMusic() {
                     Image Link
                     <input type="text" id="img" placeholder="Link to artwork" onChange={handleFormInput} />
                 </label>
-                <input type="submit" value="ADD" />
+                <div>
+                    <input type="submit" value="Save" /><span className="required">* Required</span>
+                </div>
             </form>
         </div>
     )
