@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import InputFormMusic from './InputFormMusic';
 
 export default function MusicList() {
 
@@ -34,6 +35,7 @@ export default function MusicList() {
 
     return (
         <div>
+            <InputFormMusic />
             <h2>List Of Music</h2>
             <ul>
                 {renderLi(musicData)}
