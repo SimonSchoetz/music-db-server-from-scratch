@@ -81,39 +81,41 @@ export default function InputFormMusic() {
     };
 
     return (
-        <div>
+        <div className="input-form">
             <h2>Post Music</h2>
             <form className="post-music" onSubmit={handleSubmit}>
-                <label htmlFor="title">
-                    <span className="required">*</span>Title
+                <div className="grid-container">
+                    <label htmlFor="title">
+                        <span className="required">*</span>Title
                     <input type="text" id="title" placeholder="Title" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="artist">
-                    <span className="required">*</span>Artist
+                    </label>
+                    <label htmlFor="artist">
+                        <span className="required">*</span>Artist
                     <input type="text" id="artist" placeholder="Artist" value={artist} onChange={handleFormInput} />
-                </label>
-                <label htmlFor="album">
-                    Album
+                    </label>
+                    <label htmlFor="album">
+                        Album
                     <input type="text" id="album" placeholder="Album" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="label">
-                    <span className="required">*</span>Label
+                    </label>
+                    <label htmlFor="label">
+                        <span className="required">*</span>Label
                     <input type="text" id="label" placeholder="Label" value={label} onChange={handleFormInput} />
-                </label>
-                <label htmlFor="release">
-                    <span className="required">*</span>Release Date
+                    </label>
+                    <label htmlFor="release">
+                        <span className="required">*</span>Release Date
                     <input type="text" id="release" placeholder="yyyy-mm-dd" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="link">
-                    <span className="required">*</span>Purchase/Download Link
+                    </label>
+                    <label htmlFor="link">
+                        <span className="required">*</span>Purchase/Download Link
                     <input type="text" id="link" placeholder="Link" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="img">
-                    Image Link
+                    </label>
+                    <label htmlFor="img">
+                        Image Link
                     <input type="text" id="img" placeholder="Link to artwork" onChange={handleFormInput} />
-                </label>
+                    </label>
+                </div>
                 <div>
-                    <input type="submit" value="Save" /><span className="required">* Required</span>
+                    <input className="submit-button" type="submit" value="Save" /><span className="required">* Required</span>
                 </div>
             </form>
         </div>

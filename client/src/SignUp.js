@@ -93,49 +93,51 @@ export default function SignUp() {
 
 
     return (
-        <div>
-            <h2>Sign Up area</h2>
-            <form className="post-music" onSubmit={handleSubmit}>
-                <label htmlFor="firstName">
-                    <span className="required">*</span>First Name
+        <div className="input-form">
+            <h2>Sign Up</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="grid-container">
+                    <label htmlFor="firstName">
+                        <span className="required">*</span>First Name
                     <input type="text" id="firstName" placeholder="First Name" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="lastName">
-                    <span className="required">*</span>Last Name
+                    </label>
+                    <label htmlFor="lastName">
+                        <span className="required">*</span>Last Name
                     <input type="text" id="lastName" placeholder="Last Name" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="userName">
-                    <span className="required">*</span>User Name
+                    </label>
+                    <label htmlFor="userName">
+                        <span className="required">*</span>User Name
                     <input type="text" id="userName" placeholder="User Name" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="email">
-                    <span className="required">*</span>Email
+                    </label>
+                    <label htmlFor="email">
+                        <span className="required">*</span>Email
                     <input type="text" id="email" placeholder="Email" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="pw">
-                    <span className="required">*</span>Password
+                    </label>
+                    <label htmlFor="pw">
+                        <span className="required">*</span>Password
                     <input type="text" id="pw" placeholder="At least 10 signs long" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="role">
-                    Role
+                    </label>
+                    <label htmlFor="role">
+                        Role
                     <input type="text" id="role" placeholder="Role" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="street">
-                    Street
+                    </label>
+                    <label htmlFor="street">
+                        Street
                     <input type="text" id="street" placeholder="Street" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="city">
-                    City
+                    </label>
+                    <label htmlFor="city">
+                        City
                     <input type="text" id="city" placeholder="City" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="country">
-                    Country
+                    </label>
+                    <label htmlFor="country">
+                        Country
                     <input type="text" id="country" placeholder="Country" onChange={handleFormInput} />
-                </label>
+                    </label>
 
 
+                </div>
                 <div>
-                    <input type="submit" value="Sign Up" /><span className="required">* Required</span>
+                    <input className="submit-button" type="submit" value="Sign Up" /><span className="required">* Required</span>
                 </div>
             </form>
         </div>

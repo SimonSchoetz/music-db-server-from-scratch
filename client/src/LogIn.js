@@ -47,24 +47,25 @@ export default function LogIn() {
                 setPw(input)
                 break;
 
-            default: console.log("Music Input HandleFormInput ran through without effect")
+            default: console.log("Log In Input from LogIn.js ran through without effect")
         }
     };
 
     return (
-        <div>
-            <h2>Log in area</h2>
-            <form className="post-music" onSubmit={handleSubmit}>
-                <label htmlFor="email">
-                    <span className="required">*</span>Email
+        <div className="input-form">
+            <h2>Log In</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="grid-container">
+                    <label htmlFor="email">
+                        <span className="required">*</span>Email
                     <input type="text" id="email" placeholder="Email" onChange={handleFormInput} />
-                </label>
-                <label htmlFor="pw">
-                    <span className="required">*</span>Password
+                    </label>
+                    <label htmlFor="pw">
+                        <span className="required">*</span>Password
                     <input type="text" id="pw" placeholder="Password" onChange={handleFormInput} />
-                </label>
-
-                <div>
+                    </label>
+                </div>
+                <div className="submit-button">
                     <input type="submit" value="Log In" /><span className="required">* Required</span>
                 </div>
             </form>
