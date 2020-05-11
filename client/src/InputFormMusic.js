@@ -23,7 +23,6 @@ export default function InputFormMusic() {
             "link": link,
             "img": img
         };
-        // console.log(body)
 
         const postData = async (url, data) => {
 
@@ -40,10 +39,6 @@ export default function InputFormMusic() {
         }
         postData("http://localhost:3000/music", body)
             .then(data => { console.log(data) })
-
-
-
-
         //reset form
         setTitle("");
         setArtist("Busted Fingerz");
