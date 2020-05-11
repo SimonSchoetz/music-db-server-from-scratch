@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+// const createError = require("http-errors");
 
 export default function InputFormMusic() {
     const [title, setTitle] = useState("");
@@ -11,6 +12,35 @@ export default function InputFormMusic() {
 
     const handleSubmit = event => {
         event.preventDefault()
+
+        //POST request
+        const body = {
+            "title": title,
+            "artist": artist,
+            "album": album,
+            "label": label,
+            "release": release,
+            "link": link,
+            "img": img
+        };
+        // console.log(body)
+
+        const postData = async (url, data) => {
+
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    // "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "x-auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWIwMTkyMjI0MzAzZDJmNTAyM2FiM2EiLCJpYXQiOjE1ODg1OTkwNzR9.u3oGxeRLOMgILOwWG1VsuJWCEAtkz4G1EbYSQgE5ObY"
+                },
+                body: JSON.stringify(data)
+            })
+            return response.json()
+        }
+        postData("http://localhost:3000/music", body)
+            .then(data => { console.log(data) })
+
 
 
 
@@ -77,7 +107,7 @@ export default function InputFormMusic() {
                 </label>
                 <label htmlFor="release">
                     <span className="required">*</span>Release Date
-                    <input type="text" id="release" placeholder="yyy-mm-dd" onChange={handleFormInput} />
+                    <input type="text" id="release" placeholder="yyyy-mm-dd" onChange={handleFormInput} />
                 </label>
                 <label htmlFor="link">
                     <span className="required">*</span>Purchase/Download Link

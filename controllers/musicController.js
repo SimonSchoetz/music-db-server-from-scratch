@@ -4,6 +4,7 @@ const Music = require("../models/musicSchema");
 exports.getMusic = async (req, res, next) => {
     try {
         const music = await Music.find()
+        console.log(req.user)
         res.json({ success: true, music: music });
     }
     catch (err) {
@@ -25,6 +26,7 @@ exports.getMusicById = async (req, res, next) => {
 
 exports.postMusic = async (req, res, next) => {
     try {
+        console.log("from postMusic: " + req)
         const music = new Music(req.body);
         await music.save()
         res.json({ success: true, music: music });
