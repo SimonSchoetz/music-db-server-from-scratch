@@ -34,15 +34,18 @@ export default function SignUp() {
                 headers: {
                     // "Accept": "application/json",
                     "Content-Type": "application/json",
-                    "x-auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWIwMTkyMjI0MzAzZDJmNTAyM2FiM2EiLCJpYXQiOjE1ODg1OTkwNzR9.u3oGxeRLOMgILOwWG1VsuJWCEAtkz4G1EbYSQgE5ObY"
+                    // "x-auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWIwMTkyMjI0MzAzZDJmNTAyM2FiM2EiLCJpYXQiOjE1ODg1OTkwNzR9.u3oGxeRLOMgILOwWG1VsuJWCEAtkz4G1EbYSQgE5ObY"
                 },
                 body: JSON.stringify(data)
             })
             return response.json()
         }
-        postData("http://localhost:3000/music", body)
+        postData("http://localhost:3000/users", body)
             .then(data => { console.log(data) })
         //reset form
+        /////////////////////////////////////////////
+        ////// TO DO IF THERE IS NO ERROR, THEN RESET
+        /////////////////////////////////////////////
         setFirstName("");
         setLastName("");
         setUserName("");
@@ -118,7 +121,7 @@ export default function SignUp() {
                     <input type="text" id="pw" placeholder="At least 10 signs long" onChange={handleFormInput} />
                     </label>
                     <label htmlFor="role">
-                        Role
+                        <span className="required">*</span>Role
                     <input type="text" id="role" placeholder="Role" onChange={handleFormInput} />
                     </label>
                     <label htmlFor="street">

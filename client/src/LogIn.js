@@ -28,7 +28,7 @@ export default function LogIn() {
             })
             return response.json()
         }
-        postData("http://localhost:3000/music", body)
+        postData("http://localhost:3000/users/login", body)
             .then(data => { console.log(data) })
         //reset form
         setEmail("");

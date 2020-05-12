@@ -4,7 +4,7 @@ const auth = require("../middleware/tokenAuthenticator");
 const isAdmin = require("../middleware/rolesAuthenticator");
 
 Route.get("/", auth, getMusic);
-Route.post("/post", auth, postMusic);
+Route.post("/post", auth, isAdmin, postMusic);
 //Alternative syntax for practice purposes
 Route.route("/:id")
     .get(auth, getMusicById)
