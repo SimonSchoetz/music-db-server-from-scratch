@@ -1,10 +1,20 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+h1 {
+  margin: 3rem 0;
+}
 h2 {
   text-align: center;
 }
 .nav-link {
   padding: 0 2vw;
 }
-
+///////////////////////////////////
+//          Input Form
+///////////////////////////////////
 .input-form {
   display: flex;
   flex-flow: column;
@@ -15,8 +25,6 @@ h2 {
   column-gap: 2rem;
   row-gap: 1rem;
   width: 800px;
-
-    
 
     label {
       input {
@@ -42,8 +50,35 @@ h2 {
       color: red;
     }
 }
+///////////////////////////////////
+//          Music List
+///////////////////////////////////
+.music-menu {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
 
 
+.music-list-page {
+  display: flex;
+  justify-content: center;
+}
+.list-header, .music-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 20px;
+  column-gap: 20px;
+  
+}
+li {
+  list-style-type: none;
+  margin-bottom: 5px;
+
+}
+.check-delete {
+  width: 20px;
+  height: 20px;
+}
 
 //---------------------------------------------//
 //            From the base react              //
@@ -82,7 +117,6 @@ code {
 
 .App-header {
   background-color: #282c34;
-
   display: flex;
   flex-direction: column;
   align-items: center;

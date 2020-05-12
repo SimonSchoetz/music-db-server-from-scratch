@@ -20,13 +20,15 @@ export default function MusicList() {
 
 
             <li key={i}>
-                <ul>
-                    <li>Title: {el.title}</li>
-                    <li>Artist: {el.artist}</li>
-                    <li>Label: {el.label}</li>
-                    <li>Release Date: {el.release.substring(0, 10)}</li>
+                <ul className="music-list">
+                    <li>{el.title/*Make it link to lead to details*/}</li>
+                    <li>{el.artist}</li>
+                    <li>{el.label}</li>
+                    <li>{el.release.substring(0, 10)}</li>
+                    <li><input className="check-delete" type="checkbox"></input></li>
+                    {/* <li>{el._id}</li> */}
                 </ul>
-            </li>
+            </li >
 
 
         ));
@@ -35,12 +37,24 @@ export default function MusicList() {
 
     return (
 
-        <div>
-            <h2>List Of Music</h2>
-            <Link to="/music/post">Add New Track</Link>
-            <ul>
-                {renderLi(musicData)}
-            </ul>
+        <div className="music-list-page">
+            <div>
+                <h2>List Of Music</h2>
+                <div className="music-menu">
+                    <Link to="/music/post"> Add New Track </Link>
+
+                    <button value="Delete">Delete Checked</button>
+                </div>
+                <ul className="list-header">
+                    <li><h3>Title</h3></li>
+                    <li><h3>Artist</h3></li>
+                    <li><h3>Label</h3></li>
+                    <li><h3>Release Date</h3></li>
+                </ul>
+                <ul>
+                    {renderLi(musicData)}
+                </ul>
+            </div>
         </div>
 
     )
