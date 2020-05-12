@@ -38,6 +38,10 @@ export default function LogIn() {
             setPw("");
             alert("Log In successful, you might want to redirect your user to the music DB tho")
         }
+        if (data.status === 404) alert("Invalid Email")
+        if (data.status === 403) alert("Invalid Password")
+
+        else { console.log(data) }
     }
     const handleFormInput = event => {
         const id = event.target.id;

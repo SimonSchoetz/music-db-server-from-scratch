@@ -40,13 +40,12 @@ exports.login = async (req, res, next) => {
     const { email, pw } = req.body
     try {
         const user = await User.findOne({ email })
-        if (user === null) throw createError(404 + "  ... no user found")
+        if (!user) throw createError(404)
         const isValid = await user.checkPW(pw);
         if (!isValid) throw createError(403);
         const token = user.generateAuthToken();
         const publicData = user.getPublicFields();
 
-        if (!user) throw createError(404);
         res.header("x-auth", token).json({ success: true, user: publicData });
     } catch (err) {
         next(err)
