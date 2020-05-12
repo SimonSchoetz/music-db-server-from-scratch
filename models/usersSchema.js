@@ -45,7 +45,6 @@ UserSchema.methods.getPublicFields = function () {
 
 // compare pwInput with saved user.pw
 UserSchema.methods.checkPW = async function (pwInput) {
-    console.log("Test in checkPW")
     const user = this;
     return await compare(pwInput, user.pw)
 }

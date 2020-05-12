@@ -25,6 +25,7 @@ exports.getMusicById = async (req, res, next) => {
 };
 
 exports.postMusic = async (req, res, next) => {
+    console.log("postMusic is running")
     try {
         console.log("from postMusic: " + req)
         const music = new Music(req.body);

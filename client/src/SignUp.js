@@ -118,7 +118,7 @@ export default function SignUp() {
                     </label>
                     <label htmlFor="pw">
                         <span className="required">*</span>Password
-                    <input type="text" id="pw" placeholder="At least 10 signs long" onChange={handleFormInput} />
+                    <input type="text" id="pw" placeholder="At least 8 signs long" onChange={handleFormInput} />
                     </label>
                     <label htmlFor="role">
                         <span className="required">*</span>Role

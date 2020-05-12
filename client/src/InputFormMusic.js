@@ -25,11 +25,9 @@ export default function InputFormMusic() {
         };
 
         const postData = async (url, data) => {
-
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    // "Accept": "application/json",
                     "Content-Type": "application/json",
                     "x-auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWIwMTkyMjI0MzAzZDJmNTAyM2FiM2EiLCJpYXQiOjE1ODg1OTkwNzR9.u3oGxeRLOMgILOwWG1VsuJWCEAtkz4G1EbYSQgE5ObY"
                 },
@@ -37,17 +35,27 @@ export default function InputFormMusic() {
             })
             return response.json()
         }
-        postData("http://localhost:3000/music", body)
-            .then(data => { console.log(data) })
-        //reset form
-        setTitle("");
-        setArtist("Busted Fingerz");
-        setAlbum("");
-        setLabel("Self-Release");
-        setRelease("");
-        setLink("");
-        setImg("");
+        postData("http://localhost:3000/music/post", body)
+            .then(data => { resetForm(data) })
+
+        const resetForm = (data) => {
+            if (data.success) {
+                setTitle("");
+                setArtist("Busted Fingerz");
+                setAlbum("");
+                setLabel("Self-Release");
+                setRelease("");
+                setLink("");
+                setImg("");
+                alert("Item was successfully added to database")
+            } else {
+                alert(data.err)
+            }
+            console.log(data)
+        }
     }
+
+
 
 
 
@@ -87,7 +95,7 @@ export default function InputFormMusic() {
                 <div className="grid-container">
                     <label htmlFor="title">
                         <span className="required">*</span>Title
-                    <input type="text" id="title" placeholder="Title" onChange={handleFormInput} />
+                    <input type="text" id="title" placeholder="Title" value={title} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="artist">
                         <span className="required">*</span>Artist
@@ -95,7 +103,7 @@ export default function InputFormMusic() {
                     </label>
                     <label htmlFor="album">
                         Album
-                    <input type="text" id="album" placeholder="Album" onChange={handleFormInput} />
+                    <input type="text" id="album" placeholder="Album" value={album} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="label">
                         <span className="required">*</span>Label
@@ -103,15 +111,15 @@ export default function InputFormMusic() {
                     </label>
                     <label htmlFor="release">
                         <span className="required">*</span>Release Date
-                    <input type="text" id="release" placeholder="yyyy-mm-dd" onChange={handleFormInput} />
+                    <input type="text" id="release" placeholder="yyyy-mm-dd" value={release} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="link">
                         <span className="required">*</span>Purchase/Download Link
-                    <input type="text" id="link" placeholder="Link" onChange={handleFormInput} />
+                    <input type="text" id="link" placeholder="Link" value={link} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="img">
                         Image Link
-                    <input type="text" id="img" placeholder="Link to artwork" onChange={handleFormInput} />
+                    <input type="text" id="img" placeholder="Link to artwork" value={img} onChange={handleFormInput} />
                     </label>
                 </div>
                 <div className="submit-button">

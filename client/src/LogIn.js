@@ -43,6 +43,7 @@ export default function LogIn() {
 
         else { console.log(data) }
     }
+
     const handleFormInput = event => {
         const id = event.target.id;
         const input = event.target.value;
