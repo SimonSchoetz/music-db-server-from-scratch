@@ -114,8 +114,8 @@ export default function InputFormMusic() {
                     <input type="text" id="img" placeholder="Link to artwork" onChange={handleFormInput} />
                     </label>
                 </div>
-                <div>
-                    <input className="submit-button" type="submit" value="Save" /><span className="required">* Required</span>
+                <div className="submit-button">
+                    <input type="submit" value="Save" /><span className="required">* Required</span>
                 </div>
             </form>
         </div>
