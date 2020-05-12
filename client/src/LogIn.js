@@ -16,7 +16,6 @@ export default function LogIn() {
         };
 
         const postData = async (url, data) => {
-
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
@@ -29,13 +28,17 @@ export default function LogIn() {
             return response.json()
         }
         postData("http://localhost:3000/users/login", body)
-            .then(data => { console.log(data) })
-        //reset form
-        setEmail("");
-        setPw("");
+            .then(data => { resetForm(data) })
 
     }
 
+    const resetForm = (data) => {
+        if (data.success) {
+            setEmail("");
+            setPw("");
+            alert("Log In successful, you might want to redirect your user to the music DB tho")
+        }
+    }
     const handleFormInput = event => {
         const id = event.target.id;
         const input = event.target.value;
@@ -58,11 +61,11 @@ export default function LogIn() {
                 <div className="grid-container">
                     <label htmlFor="email">
                         <span className="required">*</span>Email
-                    <input type="text" id="email" placeholder="Email" onChange={handleFormInput} />
+                    <input type="text" id="email" placeholder="Email" value={email} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="pw">
                         <span className="required">*</span>Password
-                    <input type="text" id="pw" placeholder="Password" onChange={handleFormInput} />
+                    <input type="text" id="pw" placeholder="Password" value={pw} onChange={handleFormInput} />
                     </label>
                 </div>
                 <div className="submit-button">

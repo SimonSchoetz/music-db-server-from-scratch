@@ -38,9 +38,9 @@ exports.postUser = async (req, res, next) => {
 };
 exports.login = async (req, res, next) => {
     const { email, pw } = req.body
-    console.log(email + pw)
     try {
         const user = await User.findOne({ email })
+        if (user === null) throw createError(404 + "  ... no user found")
         const isValid = await user.checkPW(pw);
         if (!isValid) throw createError(403);
         const token = user.generateAuthToken();
