@@ -6,7 +6,7 @@ export default function SignUp() {
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [pw, setPW] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("User");
     const [street, setStreet] = useState("");
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
@@ -40,21 +40,28 @@ export default function SignUp() {
             })
             return response.json()
         }
-        postData("http://localhost:3000/users", body)
-            .then(data => { console.log(data) })
-        //reset form
-        /////////////////////////////////////////////
-        ////// TO DO IF THERE IS NO ERROR, THEN RESET
-        /////////////////////////////////////////////
-        setFirstName("");
-        setLastName("");
-        setUserName("");
-        setEmail("");
-        setPW("");
-        setRole("");
-        setStreet("");
-        setCity("");
-        setCountry("");
+        postData("http://localhost:3000/users/signup", body)
+            .then(data => { resetForm(data) })
+
+
+        const resetForm = (data) => {
+            if (data.success) {
+                setFirstName("");
+                setLastName("");
+                setUserName("");
+                setEmail("");
+                setPW("");
+                setRole("User");
+                setStreet("");
+                setCity("");
+                setCountry("");
+                alert("You succesfully signed up!")
+            } else {
+                alert("Please fill out all *Required fields and make sure your password is at least 8 signs long.")
+            }
+            console.log(data)
+        }
+
     }
 
 
@@ -102,39 +109,39 @@ export default function SignUp() {
                 <div className="grid-container">
                     <label htmlFor="firstName">
                         <span className="required">*</span>First Name
-                    <input type="text" id="firstName" placeholder="First Name" onChange={handleFormInput} />
+                    <input type="text" id="firstName" placeholder="First Name" value={firstName} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="lastName">
                         <span className="required">*</span>Last Name
-                    <input type="text" id="lastName" placeholder="Last Name" onChange={handleFormInput} />
+                    <input type="text" id="lastName" placeholder="Last Name" value={lastName} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="userName">
                         <span className="required">*</span>User Name
-                    <input type="text" id="userName" placeholder="User Name" onChange={handleFormInput} />
+                    <input type="text" id="userName" placeholder="User Name" value={userName} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="email">
                         <span className="required">*</span>Email
-                    <input type="text" id="email" placeholder="Email" onChange={handleFormInput} />
+                    <input type="text" id="email" placeholder="Email" value={email} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="pw">
                         <span className="required">*</span>Password
-                    <input type="text" id="pw" placeholder="At least 8 signs long" onChange={handleFormInput} />
+                    <input type="text" id="pw" placeholder="At least 8 signs long" value={pw} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="role">
                         <span className="required">*</span>Role
-                    <input type="text" id="role" placeholder="Role" onChange={handleFormInput} />
+                    <input type="text" id="role" placeholder="Role" value={role} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="street">
                         Street
-                    <input type="text" id="street" placeholder="Street" onChange={handleFormInput} />
+                    <input type="text" id="street" placeholder="Street" value={street} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="city">
                         City
-                    <input type="text" id="city" placeholder="City" onChange={handleFormInput} />
+                    <input type="text" id="city" placeholder="City" value={city} onChange={handleFormInput} />
                     </label>
                     <label htmlFor="country">
                         Country
-                    <input type="text" id="country" placeholder="Country" onChange={handleFormInput} />
+                    <input type="text" id="country" placeholder="Country" value={country} onChange={handleFormInput} />
                     </label>
 
 
