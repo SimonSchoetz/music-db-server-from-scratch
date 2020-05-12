@@ -55,7 +55,7 @@ export default function SignUp() {
                 setStreet("");
                 setCity("");
                 setCountry("");
-                alert("You succesfully signed up!")
+                alert("You successfully signed up!")
             } else {
                 alert("Please fill out all *Required fields and make sure your password is at least 8 signs long.")
             }
