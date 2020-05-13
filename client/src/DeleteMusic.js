@@ -1,7 +1,7 @@
+import React from 'react'
 
-exports.deleteMusic = (checkedIDs) => {
 
-    console.log(checkedIDs)
+export default function DeleteMusic(checkedIDs) {
 
     checkedIDs.map(id => {
 
@@ -17,10 +17,13 @@ exports.deleteMusic = (checkedIDs) => {
             return response.json()
         }
         deleteData(`http://localhost:3000/music/${id}`)
-            .then(data => { console.log(data) })
+            .then(data => {
+                if (data.success) {
+                    alert("Successfully deleted data")
+                } else {
+                    console.log(data)
+                }
+            })
 
     })
-
-
-};
-
+}

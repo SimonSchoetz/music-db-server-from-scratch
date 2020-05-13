@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-const { deleteMusic } = require("./DeleteMusic")
+import deleteMusic from "./DeleteMusic"
 
 export default function MusicList() {
 
@@ -11,6 +11,7 @@ export default function MusicList() {
             .then(res => res.json())
             .then(data => setMusicData(data))
     }, [])
+
 
 
     const renderLi = (musicData) => {
@@ -44,6 +45,10 @@ export default function MusicList() {
             setCheckedIDs(filteredIDs)
         }
     }
+    //Delete the deleted Item from musicData to make it disappear without refreshing the page
+
+    //revers filter()msuicData by id
+    //reset checkedIDs
 
 
     return (
@@ -64,6 +69,7 @@ export default function MusicList() {
                 </ul>
                 <div className="delete-btn">
                     <button type="button" onClick={() => deleteMusic(checkedIDs)}>Delete Checked</button>
+                    <button onClick={() => console.log(checkedIDs)}>Test Array</button>
                 </div>
             </div>
         </div>
