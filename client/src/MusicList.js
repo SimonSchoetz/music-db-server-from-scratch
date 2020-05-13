@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import deleteMusic from "./DeleteMusic"
+const { deleteMusic } = require("./DeleteMusic")
 
 export default function MusicList() {
 
@@ -27,17 +27,15 @@ export default function MusicList() {
                     <li>{el.label}</li>
                     <li>{el.release.substring(0, 10)}</li>
                     <li><input className="check-delete" name={el._id} type="checkbox" onChange={handleIDs}></input></li>
-                    {/* <li>{el._id}</li> */}
                 </ul>
             </li >
         ));
     };
 
-    //Add ID's 
+    //Add ID's to array which will get passed to DeleteMusic by the Delete Checked button
     const handleIDs = (event) => {
         const checked = event.target.checked
         const id = event.target.name
-        console.log(id)
         if (checked) {
             setCheckedIDs([...checkedIDs, id])
         }
@@ -45,7 +43,6 @@ export default function MusicList() {
             const filteredIDs = checkedIDs.filter(el => el !== id);
             setCheckedIDs(filteredIDs)
         }
-        console.log(checkedIDs)
     }
 
 

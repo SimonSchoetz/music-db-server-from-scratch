@@ -9,6 +9,6 @@ Route.post("/post", auth, isAdmin, postMusic);
 Route.route("/:id")
     .get(auth, getMusicById)
     .put(auth, isAdmin, putMusic)
-    .delete(auth, isAdmin, deleteMusic);
+    .delete(auth, deleteMusic);
 
 module.exports = Route;
