@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 // const createError = require("http-errors");
 
-export default function InputFormMusic() {
+export default function MusicInputForm() {
     const [title, setTitle] = useState("");
     const [artist, setArtist] = useState("Busted Fingerz");
     const [album, setAlbum] = useState("");

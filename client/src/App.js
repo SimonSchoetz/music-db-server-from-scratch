@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import AccountManager from "./AccountManager";
 import MusicList from "./MusicList";
 import Home from "./Home";
-import InputFormMusic from './InputFormMusic';
+import MusicInputForm from './MusicInputForm';
 import LogIn from './LogIn';
 import SignUp from './SignUp';
 import Error from "./Error404";
@@ -31,7 +31,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/music" component={MusicList} />
         <Route exact path="/user" component={AccountManager} />
-        <Route exact path="/music/post" component={InputFormMusic} />
+        <Route exact path="/music/post" component={MusicInputForm} />
         <Route exact path="/user/login" component={LogIn} />
         <Route exact path="/user/signup" component={SignUp} />
         <Route component={Error} />

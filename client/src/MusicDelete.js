@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 export default function DeleteMusic(checkedIDs) {
 
     checkedIDs.map(id => {
