@@ -6,25 +6,25 @@ export default function MusicList() {
 
     const [checkedIDs, setCheckedIDs] = useState([]);
     const [musicData, setMusicData] = useState([]);
+
     useEffect(() => {
         fetch("http://localhost:3000/music")
             .then(res => res.json())
-            .then(data => setMusicData(data))
+            .then(data => setMusicData(data.music))
     }, [])
-
-
-
+    //list item construction
     const renderLi = (musicData) => {
         if (musicData.status === 404) return (<h2>Error 404, something went wrong</h2>)
-        if (!musicData.music) return null; //Because first time the code is running, musicData will be an empty array
+        if (!musicData) return null; //Because first time the code is running, musicData will be an empty array
         // console.log(musicData.music[0].release.getDay())
-        return musicData.music.map((el, i) => (
+        return musicData.map((el, i) => (
 
 
             <li key={i}>
                 <ul className="music-list">
                     <li>{el.title/*Make it link to lead to details*/}</li>
                     <li>{el.artist}</li>
+                    <li>{el.album}</li>
                     <li>{el.label}</li>
                     <li>{el.release.substring(0, 10)}</li>
                     <li><input className="check-delete" name={el._id} type="checkbox" onChange={handleIDs}></input></li>
@@ -32,7 +32,6 @@ export default function MusicList() {
             </li >
         ));
     };
-
     //Add ID's to array which will get passed to DeleteMusic by the Delete Checked button
     const handleIDs = (event) => {
         const checked = event.target.checked
@@ -45,10 +44,27 @@ export default function MusicList() {
             setCheckedIDs(filteredIDs)
         }
     }
-    //Delete the deleted Item from musicData to make it disappear without refreshing the page
 
-    //revers filter()msuicData by id
-    //reset checkedIDs
+    //Delete the deleted Item from musicData to make it disappear without refreshing the page
+    const handleDelete = (checkedIDs) => {
+        //prevent error when nothing is selected
+        if (checkedIDs.length === 0) {
+            return
+        }
+
+        //filter copy of music data based on checkedID and set the new state
+
+        let filteredMusicData = [...musicData];
+        for (let i = 0; i < checkedIDs.length; i++) {
+            filteredMusicData = filteredMusicData.filter(el => el._id !== checkedIDs[i]);
+        }
+        setMusicData(filteredMusicData)
+        //delete from db
+        deleteMusic(checkedIDs)
+
+        //reset Array of checkedID's
+        setCheckedIDs([]);
+    }
 
 
     return (
@@ -61,6 +77,7 @@ export default function MusicList() {
                 <ul className="list-header">
                     <li><h3>Title</h3></li>
                     <li><h3>Artist</h3></li>
+                    <li><h3>Album/EP</h3></li>
                     <li><h3>Label</h3></li>
                     <li><h3>Release Date</h3></li>
                 </ul>
@@ -68,8 +85,7 @@ export default function MusicList() {
                     {renderLi(musicData)}
                 </ul>
                 <div className="delete-btn">
-                    <button type="button" onClick={() => deleteMusic(checkedIDs)}>Delete Checked</button>
-                    <button onClick={() => console.log(checkedIDs)}>Test Array</button>
+                    <button type="button" onClick={() => handleDelete(checkedIDs)}>Delete Checked</button>
                 </div>
             </div>
         </div>
