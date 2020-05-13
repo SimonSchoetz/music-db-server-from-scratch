@@ -5,6 +5,7 @@ import AccountManager from "./AccountManager";
 import MusicList from "./MusicList";
 import Home from "./Home";
 import MusicInputForm from './MusicInputForm';
+import MusicDetail from './MusicDetail';
 import LogIn from './LogIn';
 import SignUp from './SignUp';
 import Error from "./Error404";
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/music" component={MusicList} />
         <Route exact path="/user" component={AccountManager} />
         <Route exact path="/music/post" component={MusicInputForm} />
+        <Route exact path="/music/:id" component={MusicDetail} />
         <Route exact path="/user/login" component={LogIn} />
         <Route exact path="/user/signup" component={SignUp} />
         <Route component={Error} />

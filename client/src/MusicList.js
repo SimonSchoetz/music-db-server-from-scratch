@@ -22,14 +22,14 @@ export default function MusicList() {
 
             <li key={i}>
                 <ul className="music-list">
-                    <li>{el.title/*Make it link to lead to details*/}</li>
+                    <li><Link to={`music/${el._id}`}>{el.title}</Link></li>
                     <li>{el.artist}</li>
                     <li>{el.album}</li>
                     <li>{el.label}</li>
                     <li>{el.release.substring(0, 10)}</li>
                     <li><input className="check-delete" name={el._id} type="checkbox" onChange={handleIDs}></input></li>
                 </ul>
-            </li >
+            </li>
         ));
     };
     //Add ID's to array which will get passed to DeleteMusic by the Delete Checked button
