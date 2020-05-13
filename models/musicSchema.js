@@ -12,5 +12,4 @@ const MusicSchema = new Schema(
         img: { type: String, default: "N/A" }
     }
 );
-console.log("After Music Schema")
 module.exports = mongoose.model("Music", MusicSchema);
