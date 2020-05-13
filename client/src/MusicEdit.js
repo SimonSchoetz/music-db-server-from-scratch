@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom';
 
 export default function MusicEdit(props) {
 
@@ -11,6 +12,7 @@ export default function MusicEdit(props) {
     const [release, setRelease] = useState("");
     const [link, setLink] = useState("");
     const [img, setImg] = useState("");
+
     useEffect(() => {
         fetch(`http://localhost:3000/music/${id}`)
             .then(res => res.json())
@@ -25,9 +27,10 @@ export default function MusicEdit(props) {
                 setImg(data.music.img);
             })
     }, [])
+
     const handleSubmit = event => {
         event.preventDefault()
-
+        console.log("Submit?")
         //POST request
         const body = {
             "title": title,
@@ -39,9 +42,9 @@ export default function MusicEdit(props) {
             "img": img
         };
 
-        const postData = async (url, data) => {
+        const putData = async (url, data) => {
             const response = await fetch(url, {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "x-auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWIwMTkyMjI0MzAzZDJmNTAyM2FiM2EiLCJpYXQiOjE1ODg1OTkwNzR9.u3oGxeRLOMgILOwWG1VsuJWCEAtkz4G1EbYSQgE5ObY"
@@ -50,25 +53,12 @@ export default function MusicEdit(props) {
             })
             return response.json()
         }
-        postData("http://localhost:3000/music/post", body)
-            .then(data => { resetForm(data) })
+        putData(`http://localhost:3000/music/${id}`, body)
+            .then(<Redirect to={`/music/${id}`} />)
 
-        const resetForm = (data) => {
-            if (data.success) {
-                setTitle("");
-                setArtist("Busted Fingerz");
-                setAlbum("");
-                setLabel("Self-Release");
-                setRelease("");
-                setLink("");
-                setImg("");
-                alert("Item was successfully added to database")
-            } else {
-                alert(data.err)
-            }
-            console.log(data)
-        }
+
     }
+
     const handleFormInput = event => {
         const id = event.target.id;
         const input = event.target.value;
@@ -133,7 +123,7 @@ export default function MusicEdit(props) {
                     </label>
                 </div>
                 <div className="submit-button">
-                    <input type="submit" value="Save" /><span className="required">* Required</span>
+                    <input type="submit" value="Update" /><span className="required">* Required</span>
                 </div>
             </form>
         </div>
