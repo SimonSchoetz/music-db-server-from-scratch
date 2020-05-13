@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import deleteMusic from "./DeleteMusic"
 
 export default function MusicList() {
 
-
-    const [musicData, setMusicData] = useState([])
+    const [checkedIDs, setCheckedIDs] = useState([]);
+    const [musicData, setMusicData] = useState([]);
     useEffect(() => {
         fetch("http://localhost:3000/music")
             .then(res => res.json())
@@ -25,25 +26,35 @@ export default function MusicList() {
                     <li>{el.artist}</li>
                     <li>{el.label}</li>
                     <li>{el.release.substring(0, 10)}</li>
-                    <li><input className="check-delete" type="checkbox"></input></li>
+                    <li><input className="check-delete" name={el._id} type="checkbox" onChange={handleIDs}></input></li>
                     {/* <li>{el._id}</li> */}
                 </ul>
             </li >
-
-
         ));
-
     };
 
-    return (
+    //Add ID's 
+    const handleIDs = (event) => {
+        const checked = event.target.checked
+        const id = event.target.name
+        console.log(id)
+        if (checked) {
+            setCheckedIDs([...checkedIDs, id])
+        }
+        if (!checked) {
+            const filteredIDs = checkedIDs.filter(el => el !== id);
+            setCheckedIDs(filteredIDs)
+        }
+        console.log(checkedIDs)
+    }
 
+
+    return (
         <div className="music-list-page">
             <div>
                 <h2>List Of Music</h2>
                 <div className="music-menu">
                     <Link to="/music/post"> Add New Track </Link>
-
-                    <button value="Delete">Delete Checked</button>
                 </div>
                 <ul className="list-header">
                     <li><h3>Title</h3></li>
@@ -54,6 +65,9 @@ export default function MusicList() {
                 <ul>
                     {renderLi(musicData)}
                 </ul>
+                <div className="delete-btn">
+                    <button type="button" onClick={() => deleteMusic(checkedIDs)}>Delete Checked</button>
+                </div>
             </div>
         </div>
 

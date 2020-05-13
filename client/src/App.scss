@@ -43,6 +43,7 @@ h2 {
     height: 2rem;
     input {
       height: 100%;
+      padding: 0 5px;
     }
   } 
 
@@ -78,6 +79,15 @@ li {
 .check-delete {
   width: 20px;
   height: 20px;
+}
+.delete-btn {
+  display: flex;
+  justify-content: flex-end;
+  height: 2rem;
+  button {
+    height: 100%;
+    padding: 0 5px;
+  }
 }
 
 //---------------------------------------------//
