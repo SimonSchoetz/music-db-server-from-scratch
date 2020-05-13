@@ -10,7 +10,6 @@ export default function MusicDetail(props) {
             .then(res => res.json())
             .then(data => setMusicData(data.music))
     }, [])
-    console.log(musicData)
 
     const renderLi = (musicData) => {
         if (musicData.status === 404) return (<h2>Error 404, something went wrong</h2>)
@@ -25,7 +24,10 @@ export default function MusicDetail(props) {
 
     };
 
-
+    const toEdit = {
+        pathname: `/${param}/edit`,
+        musicData: musicData
+    }
 
     return (
         <div className="music-details-page">
@@ -40,7 +42,7 @@ export default function MusicDetail(props) {
             </div>
             <a target="_blank" href={musicData.link}>Purchase/Download </a>
             <img src={musicData.img} />
-            <Link musicData={musicData} to={`/${param}/edit`}>Edit</Link>
+            <Link to={toEdit}>Edit</Link>
         </div>
     )
 }
