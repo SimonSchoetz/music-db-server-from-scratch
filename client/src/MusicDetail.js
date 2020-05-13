@@ -40,6 +40,7 @@ export default function MusicDetail(props) {
             </div>
             <a target="_blank" href={musicData.link}>Purchase/Download </a>
             <img src={musicData.img} />
+            <Link musicData={musicData} to={`/${param}/edit`}>Edit</Link>
         </div>
     )
 }
