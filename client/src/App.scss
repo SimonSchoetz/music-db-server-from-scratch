@@ -8,10 +8,12 @@ h1 {
 }
 h2 {
   text-align: center;
+  margin: 1rem 0;
 }
 .nav-link {
   padding: 0 2vw;
 }
+
 ///////////////////////////////////
 //          Input Form
 ///////////////////////////////////
@@ -44,6 +46,7 @@ h2 {
     input {
       height: 100%;
       padding: 0 5px;
+      font-size: 1rem;
     }
   } 
 
@@ -65,16 +68,32 @@ h2 {
   display: flex;
   justify-content: center;
 }
+
+
+.music-details-page {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: auto;
+  .music-details {
+  display: flex;
+  justify-content: center;
+    .list-right {
+      text-align: right;
+      margin-left: 2rem;
+    }
+  } 
+  
+}
 .list-header, .music-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 20px;
   column-gap: 20px;
-  
 }
 li {
   list-style-type: none;
   margin-bottom: 5px;
-
+  font-size: 1.1rem;
 }
 .check-delete {
   width: 20px;
@@ -87,9 +106,15 @@ li {
   button {
     height: 100%;
     padding: 0 5px;
+    font-size: 1rem;
   }
 }
-
+a {
+  margin: 1rem 0;
+}
+img {
+  width: 300px;
+}
 //---------------------------------------------//
 //            From the base react              //
 //---------------------------------------------//
@@ -111,19 +136,10 @@ code {
 
 .App {
   text-align: center;
-  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+
 
 .App-header {
   background-color: #282c34;
@@ -135,15 +151,3 @@ code {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
