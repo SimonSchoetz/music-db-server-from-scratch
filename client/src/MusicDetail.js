@@ -24,10 +24,7 @@ export default function MusicDetail(props) {
 
     };
 
-    const toEdit = {
-        pathname: `/${param}/edit`,
-        musicData: musicData
-    }
+
 
     return (
         <div className="music-details-page">
@@ -42,7 +39,7 @@ export default function MusicDetail(props) {
             </div>
             <a target="_blank" href={musicData.link}>Purchase/Download </a>
             <img src={musicData.img} />
-            <Link to={toEdit}>Edit</Link>
+            <Link to={`/${param}/edit`}>Edit</Link>
         </div>
     )
 }

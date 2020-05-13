@@ -30,7 +30,6 @@ export default function MusicEdit(props) {
 
     const handleSubmit = event => {
         event.preventDefault()
-        console.log("Submit?")
         //POST request
         const body = {
             "title": title,
@@ -54,9 +53,14 @@ export default function MusicEdit(props) {
             return response.json()
         }
         putData(`http://localhost:3000/music/${id}`, body)
-            .then(<Redirect to={`/music/${id}`} />)
+            .then(data => { if (!data.success) { console.log(data) } })
+            .then(redirect())
 
+    }
 
+    const redirect = () => {
+        console.log("update done")
+        props.history.push(`/music/${id}`)
     }
 
     const handleFormInput = event => {
