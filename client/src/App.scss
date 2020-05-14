@@ -10,9 +10,25 @@ h2 {
   text-align: center;
   margin: 1rem 0;
 }
+h3 {
+  margin-top: 1.5rem;
+}
 .nav-link {
   padding: 0 2vw;
 }
+
+///////////////////////////////////
+//         Landing Page
+///////////////////////////////////
+.landing-page {
+  display: flex;
+  justify-content: center;
+  ul {
+    margin-left: 2rem;
+  }
+}
+
+
 
 ///////////////////////////////////
 //          Input Form

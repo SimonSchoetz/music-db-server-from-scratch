@@ -13,6 +13,8 @@ export default function MusicEdit(props) {
     const [link, setLink] = useState("");
     const [img, setImg] = useState("");
 
+
+    //Get music by id to pre-fill the form
     useEffect(() => {
         fetch(`http://localhost:3000/music/${id}`)
             .then(res => res.json())
@@ -40,7 +42,7 @@ export default function MusicEdit(props) {
             "link": link,
             "img": img
         };
-
+        //Put request
         const putData = async (url, data) => {
             const response = await fetch(url, {
                 method: "PUT",
