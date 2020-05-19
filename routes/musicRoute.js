@@ -1,12 +1,14 @@
 const Route = require("express").Router();
 const { getMusicById, getMusic, postMusic, putMusic, deleteMusic } = require("../controllers/musicController");
+const auth = require("../middleware/tokenAuthenticator");
+const isAdmin = require("../middleware/rolesAuthenticator");
 
-Route.get("/", getMusic);
-Route.post("/", postMusic);
+Route.get("/", auth, getMusic);
+Route.post("/post", auth, isAdmin, postMusic);
 //Alternative syntax for practice purposes
 Route.route("/:id")
-    .get(getMusicById)
-    .put(putMusic)
-    .delete(deleteMusic);
+    .get(auth, getMusicById)
+    .put(auth, isAdmin, putMusic)
+    .delete(auth, isAdmin, deleteMusic);
 
 module.exports = Route;
